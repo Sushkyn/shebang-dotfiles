@@ -1,23 +1,23 @@
 #define ICON_SIZE 10
 Xft.dpi: 80
 
-Xft.antialias: false
-Xft.hintstyle: hintslight
-Xft.lcdfilter: lcddefault
 
 Xcursor.theme: Adwaita
 
-XTerm*font: xft:Liberation\ Sans\ Font:Regular:size=12
+xterm*faceName: DejaVu Sans Mono
+xterm*faceSize: 13
 XTerm*geometry: 80x30
 XTerm*internalBorder: 10
 XTerm*borderWidth: 0
 
-XTerm*utf8: 0
-XTerm*utf8Title: false
-XTerm*utf8Fonts: never
-XTerm*renderFont: true
-XTerm*forceBoxChars: false
-XTerm*background: #212121
+
+Xterm.locate: false
+Xterm.utf8: true
+Xterm*initialFont: 0
+
+Xterm*renderFont: false
+
+XTerm*background: #000000
 XTerm*foreground: #F0F0F0
 XTerm*dynamicColors: true
 XTerm*toolBar: false
@@ -40,6 +40,7 @@ XTerm*backarrowKey: false
 XTerm*metaSendsEscape: true
 
 XTerm*selectToClipboard: true
+Xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 XTerm*translations: #override \n\
 Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
 Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
