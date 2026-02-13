@@ -1,11 +1,10 @@
 #define ICON_SIZE 10
 Xft.dpi: 80
 
-
 Xcursor.theme: Adwaita
 
 xterm*faceName: DejaVu Sans Mono
-xterm*faceSize: 13
+xterm*faceSize: 12
 XTerm*geometry: 80x30
 XTerm*internalBorder: 10
 XTerm*borderWidth: 0
