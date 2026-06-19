@@ -8,8 +8,6 @@
 ## could benefit from your hack, please consider sharing it at:
 ## http://github.com/orgs/shebang-linux/discussions/
 
-(sleep 5s && exec shebang-welcome --first-run) &
-
 $(sleep 1s && doas renice -n 19 -p $(pidof Xorg) && doas ionice -c2 -n7 -p $(pidof Xorg)) &
 
 $(sleep 1s && doas renice -n 19 -p $(pgrep dbus) && doas ionice -c2 -n7 -p $(pgrep dbus)) &
@@ -21,16 +19,16 @@ $(sleep 1s && doas renice -n 19 -p $(pidof xdg-desktop-portal-gtk) && doas ionic
 $(sleep 1s && doas renice -n 19 -p $(pidof xdg-document-portal) && doas ionice -c2 -n7 -p $(pidof xdg-document-portal)) &
 
 ## Set keyboard
-setxkbmap replaceme &
+setxkbmap us colemak
 ## Set keyboard settings - 500 ms delay and 10 cps (characters per second) repeat rate.
 ## Adjust the values according to your preferences.
-xset r rate 500 10 &
+#xset r rate 500 10 &
 
 ## Turn on tap to click
-#xinput set-prop $(xinput | awk '/Touchpad/{print $6}' | cut -d'=' -f2) $(xinput list-props $(xinput | awk '/Touchpad/{print $6}' | cut -d'=' -f2) | awk -F '[()]' '/Tapping Enabled \(/ && !/Default/{print $2}') 1
+xinput set-prop $(xinput | awk '/Touchpad/{print $6}' | cut -d'=' -f2) $(xinput list-props $(xinput | awk '/Touchpad/{print $6}' | cut -d'=' -f2) | awk -F '[()]' '/Tapping Enabled \(/ && !/Default/{print $2}') 1
 
 ## Turn off pointer acceleration
-xset m 0 0 &
+#xset m 0 0 &
 
 ## Turn off blank display
 xset s off -dpms &
@@ -42,25 +40,19 @@ $(for output in $(xrandr --prop | grep -E -o -i "^[A-Z\-]+-[0-9]+"); do xrandr -
 xrdb -merge ~/.Xresources &
 
 ## Start Desktop
-$(exec nice -n 19 ionice -c2 -n7 pcmanfm-qt --desktop >/dev/null 2>&1) &
 
 ## Start LXDE PolKit
-$(exec nice -n 19 ionice -c2 -n7 lxpolkit >/dev/null 2>&1) &
 
 ## Group start:
 ## 1. dunst - start
 ## 2. polybar - start
 ## 3. tint2 - start
 #$(exec nice -n 19 ionice -c2 -n7 dunst -word_wrap >/dev/null 2>&1 | exec polyrestart | exec nice -n 19 ionice -c2 -n7 tint2 >/dev/null 2>&1) &
-
-## Optional (Uncomment programs you might want to run)
-## IRC Chat
-$(sleep 10s && exec nice -n 19 ionice -c2 -n7 tmux new -s irc -d torsocks irssi) &
 ## RSS Reader
 #exec xterm -e newsboat -r &
 ## Tor Router
 #exec doas /root/.local/bin/tor-router start &
-## Privacy Toggle
-$(/home/$USER/.config/polybar/polybar-scripts/privacy.sh --toggle && /home/$USER/.config/polybar/polybar-scripts/privacy.sh --toggle) &
-
+xrandr --output HDMI-1-0 --primary --left-of eDP-1 --mode 1920x1080 --rate 120
+/home/shebang/numpad-cursor/./numpadcursor &
+/home/shebang/swp/./swp /home/shebang/swp/wp.jpg
 exit
