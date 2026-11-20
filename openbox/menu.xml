@@ -111,12 +111,6 @@
                 </action>
             </item>
         </menu>
-        <separator />
-        <menu execute="shebang-applications-pipemenu" id="pipe-applicationsmenu" label="Applications" />
-        <separator />
-        <menu execute="shebang-places-pipemenu" id="pipe-placesmenu" label="Places" />
-        <menu execute="shebang-recent-files-pipemenu" id="pipe-recentfilesmenu" label="Recent Files" />
-        <separator />
         <menu id="settings" label="Settings">
             <menu id="obConfig" label="Openbox">
                 <item label="Edit menu.xml">
@@ -180,13 +174,11 @@
                 </action>
             </item>
         </menu>
-        <menu id="help" label="Help" execute="shebang-help-pipemenu" />
         <separator />
         <item label="Lock Screen">
             <action name="Execute">
                 <execute>slock</execute>
             </action>
         </item>
-        <menu id="ExitPipeMenu" label="Exit" execute="shebang-exit"  />
     </menu>
 </openbox_menu>
